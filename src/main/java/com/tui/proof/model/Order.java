@@ -8,5 +8,4 @@ public class Order {
   private Address deliveryAddress;
   private int pilotes;
   private double orderTotal;
-
 }

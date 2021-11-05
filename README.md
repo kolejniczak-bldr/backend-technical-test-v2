@@ -10,6 +10,9 @@ guide https://www.baeldung.com/lombok-ide
 Commit structure, and the evolution of the project can be
 found [here](https://github.com/kolejniczak-bldr/backend-technical-test-v2) as a public fork of the TUI DX Backend test
 
+As for now, no database migration is provided, but if the project would grow, a database migrations framework would be
+added, like liquibase, or flyway.
+
 ## Testing
 
 A `backend-technical-test-rest-assured` module lies inside the project, which allows for Test Driven Development, as it

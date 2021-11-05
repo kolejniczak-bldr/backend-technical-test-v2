@@ -5,10 +5,15 @@ TUI DX Backend technical Test v2
 The base project uses lombok, so you have to install it. You can use the following
 guide https://www.baeldung.com/lombok-ide
 
-## Thing to note:
+## Things of note:
 
 Commit structure, and the evolution of the project can be
 found [here](https://github.com/kolejniczak-bldr/backend-technical-test-v2) as a public fork of the TUI DX Backend test
+
+## Testing
+
+A `backend-technical-test-rest-assured` module lies inside the project, which allows for Test Driven Development, as it
+contains REST Assured to write endpoint tests, and possibly e2e API tests.
 
 ## Methodologies
 

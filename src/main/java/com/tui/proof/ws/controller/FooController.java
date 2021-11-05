@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class FooController {
 
   @GetMapping("/")
-  public void test() {
+  public String test() {
     log.info("Foo controller");
+    return "Hello";
   }
 }

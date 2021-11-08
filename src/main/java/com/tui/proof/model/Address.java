@@ -1,12 +1,25 @@
 package com.tui.proof.model;
 
+import com.tui.proof.order.ModelWithId;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Entity
 @Table(name = "addresses")
-public class Address {
+public class Address extends ModelWithId {
   @Column(name = "street")
   private String street;
 
@@ -18,4 +31,29 @@ public class Address {
 
   @Column(name = "country")
   private String country;
+
+  @OneToMany @JoinTable @ToString.Exclude private List<Address> addresses;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    Address address = (Address) o;
+    return street.equals(address.street)
+        && postcode.equals(address.postcode)
+        && city.equals(address.city)
+        && country.equals(address.country);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), street, postcode, city, country);
+  }
 }

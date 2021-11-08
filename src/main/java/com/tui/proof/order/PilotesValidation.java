@@ -6,13 +6,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = OrderValidator.class)
-@Target({ElementType.TYPE})
+@Constraint(validatedBy = PilotesValidator.class)
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OrderValidation {
-  String message() default "Invalid phone number";
+public @interface PilotesValidation {
+  String message() default "Wrong number of pilotes, only 5, 10, or 15 allowed";
 
   Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
 }

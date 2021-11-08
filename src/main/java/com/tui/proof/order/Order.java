@@ -5,6 +5,7 @@ import com.tui.proof.model.Client;
 import com.tui.proof.ws.ModelWithId;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -27,10 +28,11 @@ public class Order extends ModelWithId {
   @Column(name = "created_date")
   LocalDateTime createdDate = LocalDateTime.now();
 
-  @Column(name = "number")
-  private String number;
+  @Column(name = "readable_number", unique = true)
+  private String readableNumber = createdDate.toString();
 
-  @ManyToOne private Address deliveryAddress;
+  @ManyToOne(cascade = CascadeType.ALL)
+  private Address deliveryAddress;
 
   @Column(name = "pilotes")
   private int pilotes;
@@ -38,7 +40,9 @@ public class Order extends ModelWithId {
   @Column(name = "order_total")
   private double orderTotal;
 
-  @ManyToOne @CreatedBy Client client;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @CreatedBy
+  Client client;
 
   @Override
   public boolean equals(Object o) {
@@ -55,7 +59,7 @@ public class Order extends ModelWithId {
     return pilotes == order.pilotes
         && Double.compare(order.orderTotal, orderTotal) == 0
         && createdDate.equals(order.createdDate)
-        && number.equals(order.number)
+        && readableNumber.equals(order.readableNumber)
         && deliveryAddress.equals(order.deliveryAddress)
         && client.equals(order.client);
   }
@@ -63,6 +67,12 @@ public class Order extends ModelWithId {
   @Override
   public int hashCode() {
     return Objects.hash(
-        super.hashCode(), createdDate, number, deliveryAddress, pilotes, orderTotal, client);
+        super.hashCode(),
+        createdDate,
+        readableNumber,
+        deliveryAddress,
+        pilotes,
+        orderTotal,
+        client);
   }
 }

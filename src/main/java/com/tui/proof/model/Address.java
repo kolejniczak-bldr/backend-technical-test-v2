@@ -1,5 +1,6 @@
 package com.tui.proof.model;
 
+import com.tui.proof.order.Order;
 import com.tui.proof.ws.ModelWithId;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class Address extends ModelWithId {
   @Column(name = "country")
   private String country;
 
-  @OneToMany @JoinTable @ToString.Exclude private List<Address> addresses;
+  @OneToMany @JoinTable @ToString.Exclude private List<Order> orders;
 
   @Override
   public boolean equals(Object o) {

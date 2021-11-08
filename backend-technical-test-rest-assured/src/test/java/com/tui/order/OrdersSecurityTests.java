@@ -2,6 +2,9 @@ package com.tui.order;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 
 import org.apache.http.HttpHeaders;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +21,7 @@ class OrdersSecurityTests {
   @DisplayName("Orders endpoint respond with bad request, with no credentials")
   @Test
   void getAllWhenEmptyCredentials() {
-    when().get("/order").then().statusCode(400);
+    when().get("/order").then().statusCode(SC_BAD_REQUEST);
   }
 
   @DisplayName("Orders endpoint should be available with valid token")
@@ -29,7 +32,7 @@ class OrdersSecurityTests {
         .when()
         .get("/order")
         .then()
-        .statusCode(200);
+        .statusCode(SC_OK);
   }
 
   @DisplayName("Orders endpoint should be unauthorized with invalid token")
@@ -40,7 +43,7 @@ class OrdersSecurityTests {
         .when()
         .get("/order")
         .then()
-        .statusCode(401);
+        .statusCode(SC_UNAUTHORIZED);
   }
 
   @DisplayName("Orders endpoint should be unauthorized with invalidly formatted token")
@@ -51,6 +54,6 @@ class OrdersSecurityTests {
         .when()
         .get("/order")
         .then()
-        .statusCode(401);
+        .statusCode(SC_UNAUTHORIZED);
   }
 }

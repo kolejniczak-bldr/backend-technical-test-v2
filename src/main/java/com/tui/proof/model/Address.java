@@ -1,6 +1,6 @@
 package com.tui.proof.model;
 
-import com.tui.proof.order.ModelWithId;
+import com.tui.proof.ws.ModelWithId;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;

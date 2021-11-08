@@ -1,7 +1,6 @@
-package com.tui.proof.ws.order;
+package com.tui.proof.ws.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tui.proof.ws.JWTParser;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

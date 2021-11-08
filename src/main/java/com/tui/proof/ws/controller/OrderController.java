@@ -2,8 +2,8 @@ package com.tui.proof.ws.controller;
 
 import com.tui.proof.order.response.OrderResponse;
 import com.tui.proof.order.service.OrderService;
-import com.tui.proof.ws.InvalidTokenException;
-import com.tui.proof.ws.order.AccessToken;
+import com.tui.proof.ws.security.AccessToken;
+import com.tui.proof.ws.security.InvalidTokenException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

@@ -1,4 +1,4 @@
-package com.tui.proof.ws;
+package com.tui.proof.ws.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

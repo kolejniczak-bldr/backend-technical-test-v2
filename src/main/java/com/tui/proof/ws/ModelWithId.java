@@ -1,4 +1,4 @@
-package com.tui.proof.order;
+package com.tui.proof.ws;
 
 import java.util.Objects;
 import java.util.UUID;

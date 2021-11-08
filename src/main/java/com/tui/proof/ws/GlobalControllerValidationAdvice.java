@@ -1,5 +1,6 @@
 package com.tui.proof.ws;
 
+import com.tui.proof.ws.security.InvalidTokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

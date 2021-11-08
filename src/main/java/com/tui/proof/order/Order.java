@@ -2,6 +2,7 @@ package com.tui.proof.order;
 
 import com.tui.proof.model.Address;
 import com.tui.proof.model.Client;
+import com.tui.proof.ws.ModelWithId;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;

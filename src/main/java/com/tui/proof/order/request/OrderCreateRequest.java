@@ -6,9 +6,13 @@ import com.tui.proof.order.dto.ClientDTO;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class OrderCreateRequest {
   @NotNull @Valid private final ClientDTO client;
 

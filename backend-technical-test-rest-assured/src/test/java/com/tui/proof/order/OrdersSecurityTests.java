@@ -1,4 +1,4 @@
-package com.tui.order;
+package com.tui.proof.order;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
@@ -6,7 +6,7 @@ import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 
-import com.tui.jwt.TokenConstants;
+import com.tui.proof.jwt.TokenConstants;
 import org.apache.http.HttpHeaders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

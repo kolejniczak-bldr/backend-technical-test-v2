@@ -1,4 +1,4 @@
-package com.tui.address;
+package com.tui.proof.address;
 
 public class AddressConstants {
   public static final String STREET = "street";

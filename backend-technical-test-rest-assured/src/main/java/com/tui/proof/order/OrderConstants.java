@@ -1,4 +1,4 @@
-package com.tui.order;
+package com.tui.proof.order;
 
 public class OrderConstants {
   public static final String UUID = "uuid";

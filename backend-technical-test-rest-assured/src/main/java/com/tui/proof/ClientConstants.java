@@ -1,4 +1,4 @@
-package com.tui.client;
+package com.tui.proof.client;
 
 public class ClientConstants {
   public static final String FIRST_NAME = "firstName";

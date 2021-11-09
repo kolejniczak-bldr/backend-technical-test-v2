@@ -1,4 +1,4 @@
-package com.tui.jwt;
+package com.tui.proof.jwt;
 
 public class TokenConstants {
   public static final String VALID_TOKEN =

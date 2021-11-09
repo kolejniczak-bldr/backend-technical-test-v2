@@ -22,8 +22,12 @@ public class OrderService {
   private final OrderRepository orderRepository;
   private final NotificationService notificationService;
 
-  public List<Order> getAll() {
-    return orderRepository.findAll();
+  public List<Order> getAll(Optional<String> searchTerm) {
+    if (searchTerm.isEmpty()) {
+      return orderRepository.findAll();
+    } else {
+      return orderRepository.searchAll(searchTerm.get());
+    }
   }
 
   public Order create(OrderCreateRequest createRequest) {

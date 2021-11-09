@@ -10,6 +10,7 @@ import com.tui.proof.order.service.OrderService;
 import com.tui.proof.ws.security.AccessToken;
 import com.tui.proof.ws.security.InvalidTokenException;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,11 +37,13 @@ public class OrderController {
 
   @GetMapping
   public List<OrderResponse> getAllOrders(
-      @RequestHeader(HttpHeaders.AUTHORIZATION) AccessToken token) throws InvalidTokenException {
+      @RequestHeader(HttpHeaders.AUTHORIZATION) AccessToken token,
+      @RequestParam(required = false) Optional<String> search)
+      throws InvalidTokenException {
     if (!token.isValid()) {
       throw new InvalidTokenException();
     }
-    List<Order> orderList = orderService.getAll();
+    List<Order> orderList = orderService.getAll(search);
     return orderMapper.toOrderResponseList(orderList);
   }
 

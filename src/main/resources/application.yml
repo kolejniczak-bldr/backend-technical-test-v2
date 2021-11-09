@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    username: sa
+    url: jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
+    password: ''
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+logging:
+  level:
+    root: DEBUG

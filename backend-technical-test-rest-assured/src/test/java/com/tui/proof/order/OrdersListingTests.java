@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Order - Testing listing filtering")
 class OrderListingTests {
   private static long testDataIdentifier;
 

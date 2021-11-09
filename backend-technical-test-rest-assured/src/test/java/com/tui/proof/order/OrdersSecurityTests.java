@@ -11,6 +11,7 @@ import org.apache.http.HttpHeaders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Order - Checking endpoint security")
 class OrdersSecurityTests {
 
   @DisplayName("Orders endpoint respond with bad request, with no credentials")

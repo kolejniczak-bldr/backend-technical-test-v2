@@ -11,7 +11,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
-import com.github.javafaker.Faker;
 import io.restassured.http.ContentType;
 import net.minidev.json.JSONObject;
 import org.apache.http.HttpStatus;
@@ -20,9 +19,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("Order - Testing order creation")
 class OrdersCreationTests {
-  Faker faker = new Faker();
-
   @DisplayName("Should create an order")
   @Test
   void create() {

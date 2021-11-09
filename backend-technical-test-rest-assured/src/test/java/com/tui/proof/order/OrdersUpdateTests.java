@@ -11,9 +11,10 @@ import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Order - Testing updates")
 class OrdersUpdateTests {
 
-  @DisplayName("")
+  @DisplayName("Should update Order within the 5 minutes")
   @Test
   void update() {
     JSONObject orderJson = createOrderJson(5, 5);

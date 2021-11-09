@@ -34,7 +34,7 @@ public abstract class ModelWithId {
       return false;
     }
     ModelWithId that = (ModelWithId) o;
-    return uuid != null && Objects.equals(uuid, that.uuid);
+    return uuid != null && uuid.equals(that.uuid);
   }
 
   @Override

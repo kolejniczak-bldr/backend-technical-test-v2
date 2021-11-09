@@ -5,7 +5,12 @@ import com.tui.proof.order.mapping.OrderMapper;
 import com.tui.proof.order.repository.OrderRepository;
 import com.tui.proof.order.request.OrderCreateRequest;
 import com.tui.proof.order.request.OrderUpdateRequest;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +18,33 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderService {
   private final OrderMapper orderMapper;
-  private final OrderRepository repository;
+  private final OrderRepository orderRepository;
 
   public List<Order> getAll() {
-    return repository.findAll();
+    return orderRepository.findAll();
   }
 
   public Order create(OrderCreateRequest createRequest) {
     Order order = orderMapper.toOrderModel(createRequest);
-    return repository.save(order);
+    return orderRepository.save(order);
   }
 
-  public Order update(OrderUpdateRequest orderCreateRequest) {
-    return null;
+  public Order update(OrderUpdateRequest orderUpdateRequest) throws OrderNotUpdatableException {
+    Optional<Order> optionalOrder =
+        orderRepository.findById(UUID.fromString(orderUpdateRequest.getUuid()));
+    if (optionalOrder.isPresent()) {
+      if (isUpdatable(optionalOrder.get())) {
+        return orderRepository.save(
+            orderMapper.toOrderModel(orderUpdateRequest, optionalOrder.get()));
+      } else {
+        throw new OrderNotUpdatableException();
+      }
+    } else {
+      throw new EntityNotFoundException();
+    }
+  }
+
+  private boolean isUpdatable(Order order) {
+    return ChronoUnit.MINUTES.between(order.getCreatedDate(), LocalDateTime.now()) < 5;
   }
 }

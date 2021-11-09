@@ -5,6 +5,7 @@ import com.tui.proof.order.mapping.OrderMapper;
 import com.tui.proof.order.request.OrderCreateRequest;
 import com.tui.proof.order.request.OrderUpdateRequest;
 import com.tui.proof.order.response.OrderResponse;
+import com.tui.proof.order.service.OrderNotUpdatableException;
 import com.tui.proof.order.service.OrderService;
 import com.tui.proof.ws.security.AccessToken;
 import com.tui.proof.ws.security.InvalidTokenException;
@@ -46,6 +47,14 @@ public class OrderController {
   @PostMapping
   public OrderResponse createOrder(@Valid @RequestBody OrderCreateRequest orderCreateRequest) {
     Order order = orderService.create(orderCreateRequest);
+    return orderMapper.toOrderResponse(order);
+  }
+
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @PutMapping
+  public OrderResponse updateOrder(@Valid @RequestBody OrderUpdateRequest orderUpdateRequest)
+      throws OrderNotUpdatableException {
+    Order order = orderService.update(orderUpdateRequest);
     return orderMapper.toOrderResponse(order);
   }
 }

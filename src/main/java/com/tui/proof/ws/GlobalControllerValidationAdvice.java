@@ -1,5 +1,6 @@
 package com.tui.proof.ws;
 
+import com.tui.proof.order.service.OrderNotUpdatableException;
 import com.tui.proof.ws.security.InvalidTokenException;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,12 @@ public class GlobalControllerValidationAdvice extends ResponseEntityExceptionHan
   @ResponseStatus(HttpStatus.UNAUTHORIZED)
   @ExceptionHandler(InvalidTokenException.class)
   protected static void handleInvalidTokenException(InvalidTokenException e) {
+    log.info(e.getMessage());
+  }
+
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  @ExceptionHandler(OrderNotUpdatableException.class)
+  protected static void handleOrderNotUpdatableException(OrderNotUpdatableException e) {
     log.info(e.getMessage());
   }
 }

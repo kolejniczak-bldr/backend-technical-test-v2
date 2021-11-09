@@ -5,6 +5,7 @@ import static com.tui.proof.order.OrderConstants.DELIVERY_ADDRESS;
 import static com.tui.proof.order.OrderConstants.ORDER_TOTAL;
 import static com.tui.proof.order.OrderConstants.PILOTES;
 import static com.tui.proof.order.OrderConstants.UUID;
+import static com.tui.proof.order.OrderTestDataGenerator.createOrderJson;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;

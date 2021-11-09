@@ -1,14 +1,20 @@
 package com.tui.proof.order;
 
-import static com.tui.proof.order.OrderConstants.PILOTES;
-
 import com.github.javafaker.Faker;
 import com.tui.proof.address.AddressConstants;
 import com.tui.proof.client.ClientConstants;
 import net.minidev.json.JSONObject;
 
 public class OrderTestDataGenerator {
+  private OrderTestDataGenerator() {}
+
   private static Faker faker = new Faker();
+
+  public static JSONObject updateOrderJson(String uuid, int pilotes, double total) {
+    JSONObject order = createOrderJson(pilotes, total);
+    order.put(OrderConstants.UUID, uuid);
+    return order;
+  }
 
   public static JSONObject createOrderJson(int pilotes, double total) {
     JSONObject client = new JSONObject();
@@ -24,11 +30,11 @@ public class OrderTestDataGenerator {
     address.put(AddressConstants.CITY, faker.address().cityName());
     address.put(AddressConstants.COUNTRY, faker.country().name());
 
-    JSONObject requestParams = new JSONObject();
-    requestParams.put(OrderConstants.CLIENT, client);
-    requestParams.put(OrderConstants.DELIVERY_ADDRESS, address);
-    requestParams.put(PILOTES, pilotes);
-    requestParams.put(OrderConstants.ORDER_TOTAL, total);
-    return requestParams;
+    JSONObject order = new JSONObject();
+    order.put(OrderConstants.CLIENT, client);
+    order.put(OrderConstants.DELIVERY_ADDRESS, address);
+    order.put(OrderConstants.PILOTES, pilotes);
+    order.put(OrderConstants.ORDER_TOTAL, total);
+    return order;
   }
 }

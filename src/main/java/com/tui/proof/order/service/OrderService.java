@@ -1,5 +1,6 @@
 package com.tui.proof.order.service;
 
+import com.tui.proof.notification.NotificationService;
 import com.tui.proof.order.Order;
 import com.tui.proof.order.mapping.OrderMapper;
 import com.tui.proof.order.repository.OrderRepository;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class OrderService {
   private final OrderMapper orderMapper;
   private final OrderRepository orderRepository;
+  private final NotificationService notificationService;
 
   public List<Order> getAll() {
     return orderRepository.findAll();
@@ -26,7 +28,9 @@ public class OrderService {
 
   public Order create(OrderCreateRequest createRequest) {
     Order order = orderMapper.toOrderModel(createRequest);
-    return orderRepository.save(order);
+    Order savedOrder = orderRepository.save(order);
+    notificationService.notifyOfNewOrder(savedOrder);
+    return savedOrder;
   }
 
   public Order update(OrderUpdateRequest orderUpdateRequest) throws OrderNotUpdatableException {
@@ -34,8 +38,10 @@ public class OrderService {
         orderRepository.findById(UUID.fromString(orderUpdateRequest.getUuid()));
     if (optionalOrder.isPresent()) {
       if (isUpdatable(optionalOrder.get())) {
-        return orderRepository.save(
-            orderMapper.toOrderModel(orderUpdateRequest, optionalOrder.get()));
+        Order updatedOrder =
+            orderRepository.save(orderMapper.toOrderModel(orderUpdateRequest, optionalOrder.get()));
+        notificationService.notifyOfUpdatedOrder(updatedOrder);
+        return updatedOrder;
       } else {
         throw new OrderNotUpdatableException();
       }

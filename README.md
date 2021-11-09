@@ -13,6 +13,8 @@ found [here](https://github.com/kolejniczak-bldr/backend-technical-test-v2) as a
 As for now, no database migration is provided, but if the project would grow, a database migrations framework would be
 added, like liquibase, or flyway.
 
+More business-adjacent questions are added to the [QUESTIONS.md](QUESTIONS.md)
+
 ## Testing
 
 A `backend-technical-test-rest-assured` module lies inside the project, which allows for Test Driven Development, as it
